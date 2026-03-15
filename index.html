@@ -34,7 +34,6 @@ body.light{--bg:#f5f5f5;--bg2:#ffffff;--card:#ffffff;--card2:#f0f0f0;--white:#1a
 .ios-banner .close-ios{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;}
 .fab{position:fixed;bottom:90px;right:20px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:#000;border:none;border-radius:50px;padding:12px 18px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,230,118,0.3);cursor:pointer;z-index:999;display:none;align-items:center;gap:8px;}
 
-/* AUTH */
 .auth-screen{min-height:100vh;background:#0a0a0a;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden;}
 .auth-screen::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(0,230,118,0.12) 0%,transparent 70%);top:-100px;left:-100px;animation:orbFloat 6s ease-in-out infinite;pointer-events:none;}
 .auth-screen::after{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(255,109,0,0.08) 0%,transparent 70%);bottom:-80px;right:-80px;animation:orbFloat 8s ease-in-out infinite reverse;pointer-events:none;}
@@ -51,7 +50,7 @@ body.light{--bg:#f5f5f5;--bg2:#ffffff;--card:#ffffff;--card2:#f0f0f0;--white:#1a
 .auth-logo h2{font-family:'Rajdhani',sans-serif;font-size:28px;color:var(--white);font-weight:700;letter-spacing:2px;text-transform:uppercase;}
 .auth-logo h2 span{color:var(--green);}
 .auth-logo p{font-size:13px;color:var(--gray);margin-top:4px;letter-spacing:1px;}
-.auth-card-wrap{perspective:1200px;position:relative;min-height:400px;}
+.auth-card-wrap{perspective:1200px;position:relative;min-height:420px;}
 .auth-form{background:linear-gradient(145deg,rgba(30,30,30,0.95),rgba(20,20,20,0.98));border-radius:24px;padding:32px 24px;border:1px solid rgba(0,230,118,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.5);position:absolute;width:100%;top:0;left:0;backface-visibility:hidden;transform-origin:center center;}
 .auth-form::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);}
 .auth-form.signin{transform:translateX(0) scale(1);opacity:1;z-index:2;}
@@ -85,7 +84,6 @@ body.light{--bg:#f5f5f5;--bg2:#ffffff;--card:#ffffff;--card2:#f0f0f0;--white:#1a
 .auth-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s;}
 .auth-dot.active{width:20px;border-radius:3px;background:var(--green);box-shadow:0 0 8px rgba(0,230,118,0.5);}
 
-/* MAIN APP */
 header{background:var(--bg2);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
 header .brand{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:600;}
 header h1{font-family:'Rajdhani',sans-serif;font-size:18px;color:var(--white);font-weight:700;}
@@ -101,7 +99,6 @@ nav button.active{color:var(--green);font-weight:600;}
 .tab{display:none;padding:16px;}
 .tab.active{display:block;}
 
-/* SETTINGS PANEL */
 .settings-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;display:none;align-items:flex-end;justify-content:center;}
 .settings-overlay.active{display:flex;animation:fadeIn 0.2s ease;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -122,7 +119,6 @@ input:checked+.slider:before{transform:translateX(20px);}
 .time-input{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--white);font-size:14px;outline:none;width:110px;}
 .time-input:focus{border-color:var(--green);}
 
-/* DASHBOARD */
 .welcome-card{background:linear-gradient(135deg,#0d2a0d,#1a4a1a);border:1px solid rgba(0,230,118,0.2);border-radius:20px;padding:20px;margin-bottom:16px;}
 .welcome-card .greeting{font-size:13px;color:var(--gray);}
 .welcome-card h2{font-family:'Rajdhani',sans-serif;font-size:24px;color:var(--white);font-weight:700;margin:4px 0;}
@@ -142,8 +138,6 @@ input:checked+.slider:before{transform:translateX(20px);}
 .quick-btn{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:border-color .2s;}
 .quick-btn:hover{border-color:var(--green);}
 .quick-btn .q-icon{font-size:24px;display:block;margin-bottom:6px;}
-
-/* WORKOUT PLANS */
 .workout-plans{display:grid;gap:12px;margin-bottom:16px;}
 .plan-card{background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .plan-card .p-info h4{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px;}
@@ -152,218 +146,16 @@ input:checked+.slider:before{transform:translateX(20px);}
 .btn-green{padding:12px 20px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:#000;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px;}
 .btn-outline-green{padding:11px 20px;background:transparent;color:var(--green);border:2px solid var(--green);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px;}
 
-/* EXERCISE LIBRARY */
 .exercise-library-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .ex-card{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform 0.2s,border-color 0.2s;}
 .ex-card:hover{transform:translateY(-3px);border-color:var(--green);}
-.ex-anim-box{width:100%;height:120px;background:linear-gradient(135deg,#0a1a0a,#0d2a0d);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.ex-anim-box{width:100%;height:140px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.ex-anim-box img{width:100%;height:100%;object-fit:cover;}
 .ex-card-info{padding:10px 12px;}
 .ex-card-info h4{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
 .ex-card-info .ex-muscle{font-size:11px;color:var(--gray);}
 .ex-card-info .ex-type{display:inline-block;background:rgba(0,230,118,0.1);color:var(--green);border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;margin-top:4px;}
 
-/* STICK FIGURE */
-.sf{position:absolute;}
-
-/* PUSH UP */
-.pushup-scene{width:100%;height:100%;position:relative;}
-.pu-floor{position:absolute;bottom:30px;left:10%;right:10%;height:2px;background:rgba(0,230,118,0.3);border-radius:1px;}
-.pu-body{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);}
-.pu-head{width:16px;height:16px;border-radius:50%;background:var(--green);position:absolute;top:-18px;left:50%;transform:translateX(-50%);}
-.pu-torso{width:4px;height:28px;background:var(--green);border-radius:2px;position:absolute;top:-2px;left:50%;transform:translateX(-50%) rotate(0deg);transform-origin:top center;animation:puTorso 2s ease-in-out infinite;}
-.pu-larm{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:4px;left:calc(50% - 8px);transform-origin:top center;animation:puLArm 2s ease-in-out infinite;}
-.pu-rarm{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:4px;left:calc(50% + 5px);transform-origin:top center;animation:puRArm 2s ease-in-out infinite;}
-.pu-legs{width:40px;height:3px;background:var(--green);border-radius:2px;position:absolute;bottom:0;left:50%;transform:translateX(-50%);}
-@keyframes puTorso{0%,100%{transform:translateX(-50%) rotate(-15deg);}50%{transform:translateX(-50%) rotate(-50deg);}}
-@keyframes puLArm{0%,100%{transform:rotate(40deg);}50%{transform:rotate(80deg);}}
-@keyframes puRArm{0%,100%{transform:rotate(-40deg);}50%{transform:rotate(-80deg);}}
-
-/* SQUAT */
-.squat-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.sq-floor{position:absolute;bottom:20px;left:10%;right:10%;height:2px;background:rgba(0,230,118,0.3);}
-.sq-figure{position:relative;width:50px;height:80px;animation:sqFigure 2s ease-in-out infinite;}
-.sq-head{width:16px;height:16px;border-radius:50%;background:var(--green);position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.sq-torso{width:4px;height:26px;background:var(--green);border-radius:2px;position:absolute;top:15px;left:50%;transform:translateX(-50%);transform-origin:bottom center;animation:sqTorso 2s ease-in-out infinite;}
-.sq-lthigh{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:40px;left:calc(50% - 8px);transform-origin:top center;animation:sqLThigh 2s ease-in-out infinite;}
-.sq-rthigh{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:40px;left:calc(50% + 5px);transform-origin:top center;animation:sqRThigh 2s ease-in-out infinite;}
-.sq-lshin{width:3px;height:16px;background:var(--green);border-radius:2px;position:absolute;top:57px;left:calc(50% - 10px);transform-origin:top center;animation:sqLShin 2s ease-in-out infinite;}
-.sq-rshin{width:3px;height:16px;background:var(--green);border-radius:2px;position:absolute;top:57px;left:calc(50% + 7px);transform-origin:top center;animation:sqRShin 2s ease-in-out infinite;}
-@keyframes sqFigure{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
-@keyframes sqTorso{0%,100%{transform:translateX(-50%) rotate(0deg);}50%{transform:translateX(-50%) rotate(15deg);}}
-@keyframes sqLThigh{0%,100%{transform:rotate(10deg);}50%{transform:rotate(60deg);}}
-@keyframes sqRThigh{0%,100%{transform:rotate(-10deg);}50%{transform:rotate(-60deg);}}
-@keyframes sqLShin{0%,100%{transform:rotate(-10deg);}50%{transform:rotate(-50deg);}}
-@keyframes sqRShin{0%,100%{transform:rotate(10deg);}50%{transform:rotate(50deg);}}
-
-/* LUNGE */
-.lunge-scene{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:25px;}
-.lu-floor{position:absolute;bottom:20px;left:5%;right:5%;height:2px;background:rgba(0,230,118,0.3);}
-.lu-figure{position:relative;width:60px;height:80px;}
-.lu-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.lu-torso{width:4px;height:24px;background:var(--green);border-radius:2px;position:absolute;top:13px;left:50%;transform:translateX(-50%);}
-.lu-fthigh{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:36px;left:calc(50% + 4px);transform-origin:top center;animation:luFThigh 2.5s ease-in-out infinite;}
-.lu-bthigh{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:36px;left:calc(50% - 8px);transform-origin:top center;animation:luBThigh 2.5s ease-in-out infinite;}
-.lu-fshin{width:3px;height:18px;background:var(--green);border-radius:2px;position:absolute;top:55px;left:calc(50% + 8px);transform-origin:top center;animation:luFShin 2.5s ease-in-out infinite;}
-.lu-bshin{width:3px;height:18px;background:var(--green);border-radius:2px;position:absolute;top:55px;left:calc(50% - 10px);transform-origin:top center;animation:luBShin 2.5s ease-in-out infinite;}
-@keyframes luFThigh{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(10deg);}}
-@keyframes luBThigh{0%,100%{transform:rotate(30deg);}50%{transform:rotate(60deg);}}
-@keyframes luFShin{0%,100%{transform:rotate(10deg);}50%{transform:rotate(-5deg);}}
-@keyframes luBShin{0%,100%{transform:rotate(-60deg);}50%{transform:rotate(-80deg);}}
-
-/* PULL UP */
-.pullup-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.pu2-bar{position:absolute;top:12px;left:15%;right:15%;height:4px;background:var(--orange);border-radius:2px;}
-.pu2-bar::before,.pu2-bar::after{content:'';position:absolute;top:0;width:4px;height:12px;background:var(--orange);}
-.pu2-bar::before{left:20%;}
-.pu2-bar::after{right:20%;}
-.pu2-figure{position:absolute;top:14px;left:50%;transform:translateX(-50%);animation:pu2Move 2s ease-in-out infinite;}
-.pu2-larm{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:0;left:-14px;transform-origin:top;transform:rotate(-20deg);}
-.pu2-rarm{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:0;left:11px;transform-origin:top;transform:rotate(20deg);}
-.pu2-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:16px;left:50%;transform:translateX(-50%);}
-.pu2-torso{width:4px;height:24px;background:var(--green);border-radius:2px;position:absolute;top:29px;left:50%;transform:translateX(-50%);}
-.pu2-lleg{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:52px;left:calc(50% - 7px);transform:rotate(10deg);}
-.pu2-rleg{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:52px;left:calc(50% + 4px);transform:rotate(-10deg);}
-@keyframes pu2Move{0%,100%{transform:translateX(-50%) translateY(14px);}50%{transform:translateX(-50%) translateY(0);}}
-
-/* PLANK */
-.plank-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.pl-floor{position:absolute;bottom:28px;left:10%;right:10%;height:2px;background:rgba(0,230,118,0.3);}
-.pl-figure{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);}
-.pl-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:-14px;left:-4px;}
-.pl-body{width:50px;height:4px;background:var(--green);border-radius:2px;position:absolute;top:0;left:0;animation:plBody 3s ease-in-out infinite;}
-.pl-larm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:0;left:6px;transform-origin:top;transform:rotate(8deg);}
-.pl-rarm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:0;left:18px;transform-origin:top;transform:rotate(8deg);}
-.pl-lleg{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:2px;right:6px;transform-origin:top;transform:rotate(-8deg);}
-.pl-rleg{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:2px;right:14px;transform-origin:top;transform:rotate(-8deg);}
-@keyframes plBody{0%,100%{transform:scaleX(1);}50%{transform:scaleX(1.02);}}
-
-/* BENCH PRESS */
-.bench-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.bp-bench{position:absolute;bottom:28px;left:15%;right:15%;height:8px;background:#444;border-radius:4px;}
-.bp-figure{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);}
-.bp-head{width:13px;height:13px;border-radius:50%;background:var(--green);position:absolute;top:-14px;left:50%;transform:translateX(-50%);}
-.bp-torso{width:30px;height:4px;background:var(--green);border-radius:2px;position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.bp-bar{width:56px;height:3px;background:var(--orange);border-radius:2px;position:absolute;top:-20px;left:50%;transform:translateX(-50%);animation:bpBar 2s ease-in-out infinite;}
-.bp-larm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:-18px;left:8px;transform-origin:bottom;animation:bpLArm 2s ease-in-out infinite;}
-.bp-rarm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:-18px;right:8px;transform-origin:bottom;animation:bpRArm 2s ease-in-out infinite;}
-@keyframes bpBar{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-12px);}}
-@keyframes bpLArm{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-30deg);}}
-@keyframes bpRArm{0%,100%{transform:rotate(0deg);}50%{transform:rotate(30deg);}}
-
-/* DEADLIFT */
-.deadlift-scene{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;}
-.dl-figure{position:relative;width:50px;height:80px;}
-.dl-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.dl-torso{width:4px;height:26px;background:var(--green);border-radius:2px;position:absolute;top:13px;left:50%;transform:translateX(-50%);transform-origin:bottom;animation:dlTorso 2.5s ease-in-out infinite;}
-.dl-bar{width:52px;height:3px;background:var(--orange);border-radius:2px;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);animation:dlBar 2.5s ease-in-out infinite;}
-.dl-larm{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:20px;left:8px;transform-origin:top;animation:dlArm 2.5s ease-in-out infinite;}
-.dl-rarm{width:3px;height:20px;background:#00b248;border-radius:2px;position:absolute;top:20px;right:8px;transform-origin:top;animation:dlArm 2.5s ease-in-out infinite;}
-.dl-lleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% - 8px);}
-.dl-rleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% + 5px);}
-@keyframes dlTorso{0%,100%{transform:translateX(-50%) rotate(0deg);}40%,60%{transform:translateX(-50%) rotate(35deg);}}
-@keyframes dlBar{0%,100%{transform:translateX(-50%) translateY(0);}40%,60%{transform:translateX(-50%) translateY(10px);}}
-@keyframes dlArm{0%,100%{transform:rotate(0deg);}40%,60%{transform:rotate(25deg);}}
-
-/* SHOULDER PRESS */
-.shpress-scene{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;}
-.sp-figure{position:relative;width:50px;height:80px;}
-.sp-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.sp-torso{width:4px;height:26px;background:var(--green);border-radius:2px;position:absolute;top:13px;left:50%;transform:translateX(-50%);}
-.sp-bar{width:48px;height:3px;background:var(--orange);border-radius:2px;position:absolute;top:10px;left:50%;transform:translateX(-50%);animation:spBar 2s ease-in-out infinite;}
-.sp-larm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:14px;left:4px;transform-origin:bottom;animation:spLArm 2s ease-in-out infinite;}
-.sp-rarm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:14px;right:4px;transform-origin:bottom;animation:spRArm 2s ease-in-out infinite;}
-.sp-lleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% - 8px);}
-.sp-rleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% + 5px);}
-@keyframes spBar{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-16px);}}
-@keyframes spLArm{0%,100%{transform:rotate(50deg);}50%{transform:rotate(-10deg);}}
-@keyframes spRArm{0%,100%{transform:rotate(-50deg);}50%{transform:rotate(10deg);}}
-
-/* BICEP CURL */
-.curl-scene{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px;}
-.bc-figure{position:relative;width:50px;height:80px;}
-.bc-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;top:0;left:50%;transform:translateX(-50%);}
-.bc-torso{width:4px;height:26px;background:var(--green);border-radius:2px;position:absolute;top:13px;left:50%;transform:translateX(-50%);}
-.bc-luarm{width:3px;height:14px;background:#00b248;border-radius:2px;position:absolute;top:16px;left:6px;transform-origin:top;transform:rotate(10deg);}
-.bc-llarm{width:3px;height:14px;background:var(--green);border-radius:2px;position:absolute;top:28px;left:4px;transform-origin:top;animation:bcLLArm 1.5s ease-in-out infinite;}
-.bc-ruarm{width:3px;height:14px;background:#00b248;border-radius:2px;position:absolute;top:16px;right:6px;transform-origin:top;transform:rotate(-10deg);}
-.bc-rlarm{width:3px;height:14px;background:var(--green);border-radius:2px;position:absolute;top:28px;right:4px;transform-origin:top;animation:bcRLArm 1.5s ease-in-out infinite;}
-.bc-lleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% - 8px);}
-.bc-rleg{width:3px;height:22px;background:#00b248;border-radius:2px;position:absolute;top:38px;left:calc(50% + 5px);}
-@keyframes bcLLArm{0%,100%{transform:rotate(10deg);}50%{transform:rotate(-70deg);}}
-@keyframes bcRLArm{0%,100%{transform:rotate(-10deg);}50%{transform:rotate(70deg);}}
-
-/* TRICEP DIPS */
-.dips-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.td-bench{position:absolute;bottom:25px;left:15%;right:15%;height:6px;background:#444;border-radius:3px;}
-.td-figure{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);animation:tdMove 2s ease-in-out infinite;}
-.td-head{width:13px;height:13px;border-radius:50%;background:var(--green);position:absolute;top:-50px;left:50%;transform:translateX(-50%);}
-.td-torso{width:4px;height:22px;background:var(--green);border-radius:2px;position:absolute;top:-38px;left:50%;transform:translateX(-50%);}
-.td-larm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:-20px;left:-6px;transform-origin:bottom;transform:rotate(-15deg);}
-.td-rarm{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:-20px;right:-6px;transform-origin:bottom;transform:rotate(15deg);}
-.td-lleg{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:-18px;left:calc(50% - 7px);transform:rotate(5deg);}
-.td-rleg{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:-18px;left:calc(50% + 4px);transform:rotate(-5deg);}
-@keyframes tdMove{0%,100%{transform:translateX(-50%) translateY(-10px);}50%{transform:translateX(-50%) translateY(0);}}
-
-/* BURPEE */
-.burpee-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.bu-figure{position:absolute;left:50%;transform:translateX(-50%);}
-.bu-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;animation:buHead 2s ease-in-out infinite;}
-.bu-body{width:4px;height:24px;background:var(--green);border-radius:2px;position:absolute;animation:buBody 2s ease-in-out infinite;}
-.bu-arms{width:32px;height:3px;background:#00b248;border-radius:2px;position:absolute;animation:buArms 2s ease-in-out infinite;}
-.bu-legs{width:28px;height:3px;background:#00b248;border-radius:2px;position:absolute;animation:buLegs 2s ease-in-out infinite;}
-@keyframes buHead{0%,15%,75%,100%{top:-50px;left:50%;transform:translateX(-50%);}30%,60%{top:10px;left:50%;transform:translateX(-50%);}}
-@keyframes buBody{0%,15%,75%,100%{top:-35px;left:50%;transform:translateX(-50%) rotate(0deg);}30%,60%{top:22px;left:50%;transform:translateX(-50%) rotate(90deg);}}
-@keyframes buArms{0%,15%,75%,100%{top:-20px;left:50%;transform:translateX(-50%) rotate(0deg);}30%,60%{top:16px;left:50%;transform:translateX(-50%) rotate(90deg);}}
-@keyframes buLegs{0%,15%,75%,100%{top:-10px;left:50%;transform:translateX(-50%) rotate(0deg);}30%,60%{top:42px;left:50%;transform:translateX(-50%) rotate(90deg);}}
-
-/* MOUNTAIN CLIMBER */
-.mc-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.mc-floor{position:absolute;bottom:26px;left:10%;right:10%;height:2px;background:rgba(0,230,118,0.3);}
-.mc-figure{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);}
-.mc-head{width:13px;height:13px;border-radius:50%;background:var(--green);position:absolute;top:-14px;left:-8px;}
-.mc-torso{width:36px;height:4px;background:var(--green);border-radius:2px;position:absolute;top:0;left:0;}
-.mc-larm{width:3px;height:14px;background:#00b248;border-radius:2px;position:absolute;top:0;left:2px;transform-origin:top;transform:rotate(30deg);}
-.mc-rarm{width:3px;height:14px;background:#00b248;border-radius:2px;position:absolute;top:0;left:14px;transform-origin:top;transform:rotate(30deg);}
-.mc-lleg{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:2px;right:4px;transform-origin:top;animation:mcLLeg 0.8s ease-in-out infinite;}
-.mc-rleg{width:3px;height:16px;background:#00b248;border-radius:2px;position:absolute;top:2px;right:12px;transform-origin:top;animation:mcRLeg 0.8s ease-in-out infinite;}
-@keyframes mcLLeg{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(-70deg);}}
-@keyframes mcRLeg{0%,100%{transform:rotate(-70deg);}50%{transform:rotate(-20deg);}}
-
-/* JUMP ROPE */
-.jr-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.jr-figure{position:relative;animation:jrJump 0.6s ease-in-out infinite;}
-.jr-head{width:14px;height:14px;border-radius:50%;background:var(--green);margin:0 auto;}
-.jr-torso{width:4px;height:22px;background:var(--green);border-radius:2px;margin:2px auto;}
-.jr-arms{width:28px;height:3px;background:#00b248;border-radius:2px;margin:0 auto;}
-.jr-legs{width:20px;height:3px;background:#00b248;border-radius:2px;margin:4px auto;}
-.jr-rope{position:absolute;width:60px;height:30px;border:3px solid var(--orange);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:jrRope 0.6s linear infinite;}
-@keyframes jrJump{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-@keyframes jrRope{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}
-
-/* SIT UP */
-.situp-scene{width:100%;height:100%;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:24px;}
-.su-floor{position:absolute;bottom:20px;left:5%;right:5%;height:2px;background:rgba(0,230,118,0.3);}
-.su-figure{position:relative;width:60px;height:50px;}
-.su-head{width:14px;height:14px;border-radius:50%;background:var(--green);position:absolute;animation:suHead 2s ease-in-out infinite;}
-.su-torso{width:4px;height:24px;background:var(--green);border-radius:2px;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);transform-origin:bottom;animation:suTorso 2s ease-in-out infinite;}
-.su-legs{width:32px;height:3px;background:#00b248;border-radius:2px;position:absolute;bottom:16px;left:50%;transform:translateX(-50%);}
-@keyframes suHead{0%,100%{top:2px;left:50%;transform:translateX(-50%);}50%{top:-12px;left:50%;transform:translateX(-50%);}}
-@keyframes suTorso{0%,100%{transform:translateX(-50%) rotate(60deg);}50%{transform:translateX(-50%) rotate(0deg);}}
-
-/* LEG PRESS */
-.legpress-scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
-.lp-seat{position:absolute;bottom:28px;left:20%;width:25px;height:8px;background:#444;border-radius:3px;}
-.lp-back{position:absolute;bottom:28px;left:20%;width:6px;height:30px;background:#444;border-radius:3px;}
-.lp-figure{position:absolute;bottom:34px;left:28%;}
-.lp-head{width:13px;height:13px;border-radius:50%;background:var(--green);position:absolute;top:-40px;left:0;}
-.lp-torso{width:4px;height:28px;background:var(--green);border-radius:2px;position:absolute;top:-28px;left:2px;transform:rotate(20deg);}
-.lp-lthigh{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:0;left:4px;transform-origin:top;animation:lpThigh 2s ease-in-out infinite;}
-.lp-rthigh{width:3px;height:18px;background:#00b248;border-radius:2px;position:absolute;top:0;left:10px;transform-origin:top;animation:lpThigh 2s ease-in-out infinite;}
-.lp-plate{position:absolute;bottom:32px;right:15%;width:8px;height:32px;background:var(--orange);border-radius:3px;animation:lpPlate 2s ease-in-out infinite;}
-@keyframes lpThigh{0%,100%{transform:rotate(-60deg);}50%{transform:rotate(-20deg);}}
-@keyframes lpPlate{0%,100%{transform:translateX(0);}50%{transform:translateX(-12px);}}
-
-/* REST */
 .log-form{background:var(--card);border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid var(--border);}
 .log-form h3{font-family:'Rajdhani',sans-serif;font-size:17px;color:var(--white);margin-bottom:14px;font-weight:700;}
 label{font-size:12px;color:var(--gray);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
@@ -452,37 +244,19 @@ footer{text-align:center;padding:16px;font-size:12px;color:var(--gray);border-to
   <div class="settings-panel">
     <h3>Settings ⚙️ <button class="close-panel" onclick="closeSettingsPanel()">✕</button></h3>
     <div class="setting-row">
-      <div class="s-info">
-        <div class="s-label">Dark Mode</div>
-        <div class="s-desc">Toggle dark and light theme</div>
-      </div>
-      <label class="toggle">
-        <input type="checkbox" id="darkModeToggle" onchange="toggleThemeFromSettings(this)"/>
-        <span class="slider"></span>
-      </label>
+      <div class="s-info"><div class="s-label">Dark Mode</div><div class="s-desc">Toggle dark and light theme</div></div>
+      <label class="toggle"><input type="checkbox" id="darkModeToggle" onchange="toggleThemeFromSettings(this)"/><span class="slider"></span></label>
     </div>
     <div class="setting-row">
-      <div class="s-info">
-        <div class="s-label">Workout Reminder</div>
-        <div class="s-desc">Daily reminder if you haven't worked out</div>
-      </div>
-      <label class="toggle">
-        <input type="checkbox" id="reminderToggle" onchange="saveReminderSettings()"/>
-        <span class="slider"></span>
-      </label>
+      <div class="s-info"><div class="s-label">Workout Reminder</div><div class="s-desc">Daily reminder if you haven't worked out</div></div>
+      <label class="toggle"><input type="checkbox" id="reminderToggle" onchange="saveReminderSettings()"/><span class="slider"></span></label>
     </div>
     <div class="setting-row">
-      <div class="s-info">
-        <div class="s-label">Reminder Time</div>
-        <div class="s-desc">When to send the workout reminder</div>
-      </div>
+      <div class="s-info"><div class="s-label">Reminder Time</div><div class="s-desc">When to send the workout reminder</div></div>
       <input type="time" class="time-input" id="reminderTime" value="18:00" onchange="saveReminderSettings()"/>
     </div>
     <div class="setting-row">
-      <div class="s-info">
-        <div class="s-label">Enable Notifications</div>
-        <div class="s-desc">Allow push notifications</div>
-      </div>
+      <div class="s-info"><div class="s-label">Enable Notifications</div><div class="s-desc">Allow push notifications</div></div>
       <button class="btn-green" style="width:auto;padding:8px 16px;margin:0;font-size:12px;" onclick="requestNotifPermission()">Enable</button>
     </div>
   </div>
@@ -790,21 +564,21 @@ const QUOTES = [
 ];
 
 const EXERCISES = [
-  {name:"Push Ups",muscle:"Chest, Triceps",type:"Bodyweight",scene:`<div class="pushup-scene"><div class="pu-floor"></div><div class="pu-body sf"><div class="pu-head"></div><div class="pu-torso"></div><div class="pu-larm"></div><div class="pu-rarm"></div><div class="pu-legs"></div></div></div>`},
-  {name:"Squats",muscle:"Legs, Glutes",type:"Bodyweight",scene:`<div class="squat-scene"><div class="sq-floor"></div><div class="sq-figure"><div class="sq-head"></div><div class="sq-torso"></div><div class="sq-lthigh"></div><div class="sq-rthigh"></div><div class="sq-lshin"></div><div class="sq-rshin"></div></div></div>`},
-  {name:"Lunges",muscle:"Legs, Glutes",type:"Bodyweight",scene:`<div class="lunge-scene"><div class="lu-floor"></div><div class="lu-figure"><div class="lu-head"></div><div class="lu-torso"></div><div class="lu-fthigh"></div><div class="lu-bthigh"></div><div class="lu-fshin"></div><div class="lu-bshin"></div></div></div>`},
-  {name:"Pull Ups",muscle:"Back, Biceps",type:"Bodyweight",scene:`<div class="pullup-scene"><div class="pu2-bar"></div><div class="pu2-figure"><div class="pu2-larm"></div><div class="pu2-rarm"></div><div class="pu2-head"></div><div class="pu2-torso"></div><div class="pu2-lleg"></div><div class="pu2-rleg"></div></div></div>`},
-  {name:"Plank",muscle:"Core, Abs",type:"Bodyweight",scene:`<div class="plank-scene"><div class="pl-floor"></div><div class="pl-figure sf"><div class="pl-head"></div><div class="pl-body"></div><div class="pl-larm"></div><div class="pl-rarm"></div><div class="pl-lleg"></div><div class="pl-rleg"></div></div></div>`},
-  {name:"Bench Press",muscle:"Chest, Triceps",type:"Weights",scene:`<div class="bench-scene"><div class="bp-bench"></div><div class="bp-figure"><div class="bp-head"></div><div class="bp-torso"></div><div class="bp-bar"></div><div class="bp-larm"></div><div class="bp-rarm"></div></div></div>`},
-  {name:"Deadlift",muscle:"Back, Legs",type:"Weights",scene:`<div class="deadlift-scene"><div class="dl-figure"><div class="dl-head"></div><div class="dl-torso"></div><div class="dl-larm"></div><div class="dl-rarm"></div><div class="dl-lleg"></div><div class="dl-rleg"></div><div class="dl-bar"></div></div></div>`},
-  {name:"Shoulder Press",muscle:"Shoulders",type:"Weights",scene:`<div class="shpress-scene"><div class="sp-figure"><div class="sp-head"></div><div class="sp-torso"></div><div class="sp-bar"></div><div class="sp-larm"></div><div class="sp-rarm"></div><div class="sp-lleg"></div><div class="sp-rleg"></div></div></div>`},
-  {name:"Bicep Curls",muscle:"Biceps",type:"Weights",scene:`<div class="curl-scene"><div class="bc-figure"><div class="bc-head"></div><div class="bc-torso"></div><div class="bc-luarm"></div><div class="bc-llarm"></div><div class="bc-ruarm"></div><div class="bc-rlarm"></div><div class="bc-lleg"></div><div class="bc-rleg"></div></div></div>`},
-  {name:"Tricep Dips",muscle:"Triceps",type:"Bodyweight",scene:`<div class="dips-scene"><div class="td-bench"></div><div class="td-figure"><div class="td-head"></div><div class="td-torso"></div><div class="td-larm"></div><div class="td-rarm"></div><div class="td-lleg"></div><div class="td-rleg"></div></div></div>`},
-  {name:"Burpees",muscle:"Full Body",type:"Cardio",scene:`<div class="burpee-scene"><div class="bu-figure"><div class="bu-head"></div><div class="bu-body"></div><div class="bu-arms"></div><div class="bu-legs"></div></div></div>`},
-  {name:"Mountain Climbers",muscle:"Core, Cardio",type:"Cardio",scene:`<div class="mc-scene"><div class="mc-floor"></div><div class="mc-figure sf"><div class="mc-head"></div><div class="mc-torso"></div><div class="mc-larm"></div><div class="mc-rarm"></div><div class="mc-lleg"></div><div class="mc-rleg"></div></div></div>`},
-  {name:"Jump Rope",muscle:"Cardio, Legs",type:"Cardio",scene:`<div class="jr-scene"><div class="jr-rope"></div><div class="jr-figure"><div class="jr-head"></div><div class="jr-torso"></div><div class="jr-arms"></div><div class="jr-legs"></div></div></div>`},
-  {name:"Sit Ups",muscle:"Abs, Core",type:"Bodyweight",scene:`<div class="situp-scene"><div class="su-floor"></div><div class="su-figure"><div class="su-head"></div><div class="su-torso"></div><div class="su-legs"></div></div></div>`},
-  {name:"Leg Press",muscle:"Legs, Glutes",type:"Weights",scene:`<div class="legpress-scene"><div class="lp-seat"></div><div class="lp-back"></div><div class="lp-figure"><div class="lp-head"></div><div class="lp-torso"></div><div class="lp-lthigh"></div><div class="lp-rthigh"></div></div><div class="lp-plate"></div></div>`},
+  {name:"Push Ups", muscle:"Chest, Triceps", type:"Bodyweight", gif:"https://media.giphy.com/media/3ohze1qkqPZHMrEuwo/giphy.gif"},
+  {name:"Squats", muscle:"Legs, Glutes", type:"Bodyweight", gif:"https://media.giphy.com/media/tHyPJtOwPChKmF0LKg/giphy.gif"},
+  {name:"Lunges", muscle:"Legs, Glutes", type:"Bodyweight", gif:"https://media.giphy.com/media/3RWgsfiAzGcStVjiC8/giphy.gif"},
+  {name:"Pull Ups", muscle:"Back, Biceps", type:"Bodyweight", gif:"https://media.giphy.com/media/14xa1F3aatkNhK/giphy.gif"},
+  {name:"Plank", muscle:"Core, Abs", type:"Bodyweight", gif:"https://media.giphy.com/media/ZcteOOkovIh9HaVFjT/giphy.gif"},
+  {name:"Bench Press", muscle:"Chest, Triceps", type:"Weights", gif:"https://media.giphy.com/media/hTgWUraTG43eNM947x/giphy.gif"},
+  {name:"Deadlift", muscle:"Back, Legs", type:"Weights", gif:"https://media.giphy.com/media/xT0xenc4lKQlhf1Ohi/giphy.gif"},
+  {name:"Shoulder Press", muscle:"Shoulders", type:"Weights", gif:"https://media.giphy.com/media/XOOXmjMLdwS4vIlzVd/giphy.gif"},
+  {name:"Bicep Curls", muscle:"Biceps", type:"Weights", gif:"https://media.giphy.com/media/HMzHH3J2RbHzPbRJH5/giphy.gif"},
+  {name:"Tricep Dips", muscle:"Triceps", type:"Bodyweight", gif:"https://media.giphy.com/media/FaYaqb69AKg0g/giphy.gif"},
+  {name:"Burpees", muscle:"Full Body", type:"Cardio", gif:"https://media.giphy.com/media/KxuGSIZU1QZfRiRx4h/giphy.gif"},
+  {name:"Mountain Climbers", muscle:"Core, Cardio", type:"Cardio", gif:"https://media.giphy.com/media/xT5LMwlfd7jHilyWsg/giphy.gif"},
+  {name:"Jump Rope", muscle:"Cardio, Legs", type:"Cardio", gif:"https://media.giphy.com/media/jybz2WJrKtsmxi4sD8/giphy.gif"},
+  {name:"Sit Ups", muscle:"Abs, Core", type:"Bodyweight", gif:"https://media.giphy.com/media/huHYI809mgwMw/giphy.gif"},
+  {name:"Leg Press", muscle:"Legs, Glutes", type:"Weights", gif:"https://media.giphy.com/media/xT39Dj2U7yzptEAdq0/giphy.gif"},
 ];
 
 const BADGES = [
@@ -826,7 +600,6 @@ let isShowingSignUp = false;
 let isAnimating = false;
 let reminderTimeout = null;
 
-// AUTH STATE
 onAuthStateChanged(auth, async (user) => {
   if(user){
     currentUser = user;
@@ -842,7 +615,6 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// AUTH ANIMATIONS
 window.showSignUp = function(){
   if(isAnimating) return;
   isAnimating = true;
@@ -954,38 +726,19 @@ async function saveUserData(){
   try { await updateDoc(doc(db,'users',currentUser.uid,'profile','data'),userData); } catch(e){}
 }
 
-// SETTINGS
 window.openSettings = function(){
-  const overlay = document.getElementById('settingsOverlay');
-  overlay.classList.add('active');
+  document.getElementById('settingsOverlay').classList.add('active');
   const isLight = document.body.classList.contains('light');
   document.getElementById('darkModeToggle').checked = !isLight;
-  const reminderOn = localStorage.getItem('ifit_reminder') === 'true';
-  document.getElementById('reminderToggle').checked = reminderOn;
-  const reminderTime = localStorage.getItem('ifit_reminder_time') || '18:00';
-  document.getElementById('reminderTime').value = reminderTime;
+  document.getElementById('reminderToggle').checked = localStorage.getItem('ifit_reminder') === 'true';
+  document.getElementById('reminderTime').value = localStorage.getItem('ifit_reminder_time') || '18:00';
 };
-
-window.closeSettingsPanel = function(){
-  document.getElementById('settingsOverlay').classList.remove('active');
-};
-
-window.closeSettings = function(e){
-  if(e.target === document.getElementById('settingsOverlay')) closeSettingsPanel();
-};
-
+window.closeSettingsPanel = function(){ document.getElementById('settingsOverlay').classList.remove('active'); };
+window.closeSettings = function(e){ if(e.target === document.getElementById('settingsOverlay')) closeSettingsPanel(); };
 window.toggleThemeFromSettings = function(el){
-  if(el.checked){
-    document.body.classList.remove('light');
-    document.getElementById('themeBtn').textContent = '☀️';
-    localStorage.setItem('ifit_theme','dark');
-  } else {
-    document.body.classList.add('light');
-    document.getElementById('themeBtn').textContent = '🌙';
-    localStorage.setItem('ifit_theme','light');
-  }
+  if(el.checked){ document.body.classList.remove('light'); document.getElementById('themeBtn').textContent='☀️'; localStorage.setItem('ifit_theme','dark'); }
+  else { document.body.classList.add('light'); document.getElementById('themeBtn').textContent='🌙'; localStorage.setItem('ifit_theme','light'); }
 };
-
 window.saveReminderSettings = function(){
   const on = document.getElementById('reminderToggle').checked;
   const time = document.getElementById('reminderTime').value;
@@ -994,16 +747,14 @@ window.saveReminderSettings = function(){
   if(on) scheduleWorkoutReminder();
   showToast(on ? `🔔 Reminder set for ${time}` : '🔕 Reminder turned off');
 };
-
 window.requestNotifPermission = function(){
-  if(!('Notification' in window)){showToast('Notifications not supported on this browser.');return;}
+  if(!('Notification' in window)){showToast('Notifications not supported.');return;}
   Notification.requestPermission().then(p => {
-    if(p === 'granted') showToast('✅ Notifications enabled!');
-    else showToast('❌ Please enable notifications in your browser settings.');
+    if(p==='granted') showToast('✅ Notifications enabled!');
+    else showToast('❌ Enable notifications in browser settings.');
   });
 };
 
-// WORKOUT REMINDER NOTIFICATION
 function scheduleWorkoutReminder(){
   if(reminderTimeout) clearTimeout(reminderTimeout);
   const on = localStorage.getItem('ifit_reminder') === 'true';
@@ -1014,16 +765,12 @@ function scheduleWorkoutReminder(){
   const reminderDate = new Date();
   reminderDate.setHours(hours, minutes, 0, 0);
   if(reminderDate <= now) reminderDate.setDate(reminderDate.getDate() + 1);
-  const msUntilReminder = reminderDate - now;
   reminderTimeout = setTimeout(() => {
     const today = getTodayKey();
     const dayData = getLocalDay(today);
-    const workedOut = (dayData.workouts || []).length > 0;
-    if(!workedOut){
-      sendWorkoutReminder();
-    }
+    if((dayData.workouts || []).length === 0) sendWorkoutReminder();
     scheduleWorkoutReminder();
-  }, msUntilReminder);
+  }, reminderDate - now);
 }
 
 function sendWorkoutReminder(){
@@ -1036,16 +783,12 @@ function sendWorkoutReminder(){
       tag: 'workout-reminder',
       requireInteraction: true
     });
-    notif.onclick = () => {
-      window.focus();
-      notif.close();
-    };
+    notif.onclick = () => { window.focus(); notif.close(); };
   } else {
     showToast("💪 You haven't worked out today. Let's go!");
   }
 }
 
-// DASHBOARD
 function initDashboard(){
   const name = userData.name||currentUser.displayName||'Athlete';
   document.getElementById('dashName').textContent = name.split(' ')[0]+' 💪';
@@ -1121,7 +864,17 @@ window.deleteWorkout=function(i){
 };
 
 function renderExerciseLibrary(){
-  document.getElementById('exerciseLibrary').innerHTML=EXERCISES.map(e=>`<div class="ex-card"><div class="ex-anim-box">${e.scene}</div><div class="ex-card-info"><h4>${e.name}</h4><div class="ex-muscle">${e.muscle}</div><span class="ex-type">${e.type}</span></div></div>`).join('');
+  document.getElementById('exerciseLibrary').innerHTML = EXERCISES.map(e => `
+    <div class="ex-card">
+      <div class="ex-anim-box">
+        <img src="${e.gif}" alt="${e.name}" loading="lazy"/>
+      </div>
+      <div class="ex-card-info">
+        <h4>${e.name}</h4>
+        <div class="ex-muscle">${e.muscle}</div>
+        <span class="ex-type">${e.type}</span>
+      </div>
+    </div>`).join('');
 }
 
 window.logMeal=function(){
@@ -1277,21 +1030,16 @@ window.showToast=function(msg){
 };
 
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
-
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   const fab=document.getElementById('installBtn');
   fab.style.display='flex';
   fab.onclick=async()=>{e.prompt();const{outcome}=await e.userChoice;if(outcome==='accepted') fab.style.display='none';};
 });
-
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
 const isStandalone=window.matchMedia('(display-mode: standalone)').matches;
 if(isIOS&&!isStandalone) document.getElementById('iosBanner').style.display='flex';
-
-if('Notification' in window && Notification.permission !== 'granted'){
-  Notification.requestPermission();
-}
+if('Notification' in window&&Notification.permission!=='granted') Notification.requestPermission();
 </script>
 </body>
 </html>
