@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0d0d0d"/>
+<meta name="description" content="My iFitness App - Your personal fitness coach. Track workouts, calories, water intake and more."/>
+<title>My iFitness App | TeaJay Konsult</title>
+<link rel="manifest" href="manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+--green:#00e676;
+--green-dark:#00b248;
+--orange:#ff6d00;
+--orange-dark:#c43c00;
+--bg:#0d0d0d;
+--bg2:#121212;
+--card:#1e1e1e;
+--card2:#252525;
+--white:#ffffff;
+--gray:#aaaaaa;
+--border:#2a2a2a;
+--red:#ff1744;
+--blue:#2979ff;
+--purple:#7c4dff;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden;}
+body.light{--bg:#f5f5f5;--bg2:#ffffff;--card:#ffffff;--card2:#f0f0f0;--white:#1a1a1a;--gray:#666666;--border:#e0e0e0;}
+
+.ios-banner{display:none;background:linear-gradient(90deg,#0d0d0d,#1e1e1e);color:#fff;padding:10px 16px;font-size:13px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--green);}
+.ios-banner button{background:var(--green);border:none;color:#000;padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;}
+.ios-banner .close-ios{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;}
+.fab{position:fixed;bottom:90px;right:20px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:#000;border:none;border-radius:50px;padding:12px 18px;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,230,118,0.3);cursor:pointer;z-index:999;display:none;align-items:center;gap:8px;}
+
+/* ========== AUTH SCREEN ========== */
+.auth-screen{
+  min-height:100vh;
+  background:#0a0a0a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Animated background orbs */
+.auth-screen::before{
+  content:'';
+  position:absolute;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(0,230,118,0.12) 0%,transparent 70%);
+  top:-100px;left:-100px;
+  animation:orbFloat 6s ease-in-out infinite;
+  pointer-events:none;
+}
+.auth-screen::after{
+  content:'';
+  position:absolute;
+  width:350px;height:350px;
+  background:radial-gradient(circle,rgba(255,109,0,0.08) 0%,transparent 70%);
+  bottom:-80px;right:-80px;
+  animation:orbFloat 8s ease-in-out infinite reverse;
+  pointer-events:none;
+}
+
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(30px,-20px) scale(1.05);}
+  66%{transform:translate(-20px,30px) scale(0.95);}
+}
+
+/* Grid lines background */
+.auth-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,230,118,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,230,118,0.03) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+}
+
+.auth-container{
+  width:100%;
+  max-width:400px;
+  position:relative;
+  z-index:2;
+}
+
+.auth-logo{
+  text-align:center;
+  margin-bottom:32px;
+  position:relative;
+}
+
+.logo-pulse{
+  position:relative;
+  display:inline-block;
+  margin-bottom:12px;
+}
+
+.logo-pulse::before,
+.logo-pulse::after{
+  content:'';
+  position:absolute;
+  inset:-12px;
+  border-radius:50%;
+  border:2px solid rgba(0,230,118,0.3);
+  animation:logoPulse 2s ease-out infinite;
+}
+.logo-pulse::after{
+  animation-delay:1s;
+  border-color:rgba(0,230,118,0.15);
+}
+
+@keyframes logoPulse{
+  0%{transform:scale(0.8);opacity:1;}
+  100%{transform:scale(1.6);opacity:0;}
+}
+
+.logo-icon-wrap{
+  width:80px;height:80px;
+  background:linear-gradient(135deg,#0a2a0a,#1a4a1a);
+  border-radius:50%;
+  border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;
+  box-shadow:0 0 30px rgba(0,230,118,0.3),0 0 60px rgba(0,230,118,0.1);
+  position:relative;
+  z-index:1;
+  animation:iconGlow 3s ease-in-out infinite;
+}
+
+@keyframes iconGlow{
+  0%,100%{box-shadow:0 0 30px rgba(0,230,118,0.3),0 0 60px rgba(0,230,118,0.1);}
+  50%{box-shadow:0 0 40px rgba(0,230,118,0.5),0 0 80px rgba(0,230,118,0.2);}
+}
+
+.auth-logo h2{
+  font-family:'Rajdhani',serif;
+  font-size:28px;
+  color:var(--white);
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.auth-logo h2 span{color:var(--green);}
+.auth-logo p{font-size:13px;color:var(--gray);margin-top:4px;letter-spacing:1px;}
+
+/* Auth card wrapper — perspective for 3D */
+.auth-card-wrap{
+  perspective:1200px;
+  position:relative;
+  min-height:400px;
+}
+
+.auth-form{
+  background:linear-gradient(145deg,rgba(30,30,30,0.95),rgba(20,20,20,0.98));
+  border-radius:24px;
+  padding:32px 24px;
+  border:1px solid rgba(0,230,118,0.15);
+  box-shadow:
+    0 0 0 1px rgba(0,230,118,0.05),
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 40px rgba(0,230,118,0.05) inset;
+  position:absolute;
+  width:100%;
+  top:0;left:0;
+  backface-visibility:hidden;
+  transform-origin:center center;
+}
+
+/* Shimmer line at top of card */
+.auth-form::before{
+  content:'';
+  position:absolute;
+  top:0;left:20%;right:20%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  border-radius:50%;
+}
+
+/* SIGN IN — default visible */
+.auth-form.signin{
+  transform:translateX(0) scale(1);
+  opacity:1;
+  z-index:2;
+}
+
+/* SIGN UP — default hidden behind */
+.auth-form.signup{
+  transform:translateX(60px) scale(0.92) rotateY(-8deg);
+  opacity:0;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* Animate TO signup */
+.auth-form.signin.exit-to-signup{
+  animation:exitToLeft 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.auth-form.signup.enter-from-right{
+  animation:enterFromRight 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+/* Animate TO signin */
+.auth-form.signup.exit-to-signin{
+  animation:exitToRight 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.auth-form.signin.enter-from-left{
+  animation:enterFromLeft 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes exitToLeft{
+  0%{transform:translateX(0) scale(1) rotateY(0deg);opacity:1;filter:blur(0px);}
+  100%{transform:translateX(-80px) scale(0.88) rotateY(12deg);opacity:0;filter:blur(4px);}
+}
+@keyframes enterFromRight{
+  0%{transform:translateX(80px) scale(0.88) rotateY(-12deg);opacity:0;filter:blur(4px);}
+  100%{transform:translateX(0) scale(1) rotateY(0deg);opacity:1;filter:blur(0px);}
+}
+@keyframes exitToRight{
+  0%{transform:translateX(0) scale(1) rotateY(0deg);opacity:1;filter:blur(0px);}
+  100%{transform:translateX(80px) scale(0.88) rotateY(-12deg);opacity:0;filter:blur(4px);}
+}
+@keyframes enterFromLeft{
+  0%{transform:translateX(-80px) scale(0.88) rotateY(12deg);opacity:0;filter:blur(4px);}
+  100%{transform:translateX(0) scale(1) rotateY(0deg);opacity:1;filter:blur(0px);}
+}
+
+.auth-form h3{
+  font-family:'Rajdhani',sans-serif;
+  font-size:22px;
+  color:var(--white);
+  font-weight:700;
+  margin-bottom:6px;
+  letter-spacing:1px;
+}
+.auth-form .auth-subtitle{
+  font-size:12px;
+  color:var(--gray);
+  margin-bottom:20px;
+  letter-spacing:0.5px;
+}
+
+.form-group{margin-bottom:14px;position:relative;}
+.form-group label{font-size:11px;color:var(--gray);font-weight:600;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px;}
+
+.input-wrap{position:relative;}
+.input-wrap .input-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+.form-group input{
+  width:100%;
+  padding:12px 14px 12px 38px;
+  background:rgba(255,255,255,0.04);
+  border:1.5px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  font-size:14px;
+  color:var(--white);
+  outline:none;
+  transition:all 0.3s;
+  backdrop-filter:blur(10px);
+}
+.form-group input::placeholder{color:rgba(255,255,255,0.2);}
+.form-group input:focus{
+  border-color:var(--green);
+  background:rgba(0,230,118,0.05);
+  box-shadow:0 0 0 3px rgba(0,230,118,0.1),0 0 20px rgba(0,230,118,0.05);
+}
+
+.btn-auth{
+  width:100%;
+  padding:15px;
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  color:#000;
+  border:none;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  font-family:'Rajdhani',sans-serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:6px;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 20px rgba(0,230,118,0.3);
+}
+.btn-auth::before{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+  transition:left 0.5s;
+}
+.btn-auth:hover::before{left:100%;}
+.btn-auth:active{transform:scale(0.98);}
+
+.auth-switch{
+  text-align:center;
+  margin-top:18px;
+  font-size:13px;
+  color:var(--gray);
+}
+.auth-switch span{
+  color:var(--green);
+  cursor:pointer;
+  font-weight:700;
+  position:relative;
+}
+.auth-switch span::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;left:0;right:0;
+  height:1px;
+  background:var(--green);
+  transform:scaleX(0);
+  transition:transform 0.2s;
+}
+.auth-switch span:hover::after{transform:scaleX(1);}
+
+.auth-error{
+  background:rgba(255,23,68,0.08);
+  border:1px solid rgba(255,23,68,0.3);
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:13px;
+  color:var(--red);
+  margin-bottom:14px;
+  display:none;
+  animation:shakeError 0.4s ease;
+}
+@keyframes shakeError{
+  0%,100%{transform:translateX(0);}
+  20%{transform:translateX(-6px);}
+  40%{transform:translateX(6px);}
+  60%{transform:translateX(-4px);}
+  80%{transform:translateX(4px);}
+}
+
+/* Tab dots indicator */
+.auth-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:20px;
+}
+.auth-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  transition:all 0.3s;
+}
+.auth-dot.active{
+  width:20px;
+  border-radius:3px;
+  background:var(--green);
+  box-shadow:0 0 8px rgba(0,230,118,0.5);
+}
+
+/* ========== MAIN APP ========== */
+header{background:var(--bg2);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+header .brand{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:600;}
+header h1{font-family:'Rajdhani',sans-serif;font-size:18px;color:var(--white);font-weight:700;}
+.header-actions{display:flex;gap:10px;align-items:center;}
+.theme-toggle{background:none;border:1px solid var(--border);color:var(--gray);padding:6px 10px;border-radius:8px;cursor:pointer;font-size:14px;}
+.logout-btn{background:none;border:1px solid var(--red);color:var(--red);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;}
+.main-app{display:none;padding-bottom:80px;}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:1000;}
+nav button{flex:1;padding:10px 4px 8px;border:none;background:none;font-size:10px;color:var(--gray);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .2s;}
+nav button .icon{font-size:20px;}
+nav button.active{color:var(--green);font-weight:600;}
+.tab{display:none;padding:16px;}
+.tab.active{display:block;}
+.welcome-card{background:linear-gradient(135deg,#0d2a0d,#1a4a1a);border:1px solid rgba(0,230,118,0.2);border-radius:20px;padding:20px;margin-bottom:16px;}
+.welcome-card .greeting{font-size:13px;color:var(--gray);}
+.welcome-card h2{font-family:'Rajdhani',sans-serif;font-size:24px;color:var(--white);font-weight:700;margin:4px 0;}
+.welcome-card .streak{display:inline-flex;align-items:center;gap:6px;background:rgba(255,109,0,0.15);border:1px solid var(--orange);border-radius:50px;padding:4px 12px;font-size:12px;color:var(--orange);font-weight:600;margin-top:8px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.stat-card{background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--border);}
+.stat-card .s-icon{font-size:24px;margin-bottom:8px;}
+.stat-card .s-val{font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:700;color:var(--white);}
+.stat-card .s-label{font-size:11px;color:var(--gray);margin-top:2px;}
+.stat-card .s-progress{height:4px;background:var(--border);border-radius:4px;margin-top:8px;overflow:hidden;}
+.stat-card .s-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green-dark),var(--green));transition:width .5s;}
+.quote-card{background:linear-gradient(135deg,rgba(124,77,255,0.15),rgba(41,121,255,0.15));border:1px solid rgba(124,77,255,0.3);border-radius:16px;padding:16px;margin-bottom:16px;}
+.quote-card .q-label{font-size:11px;color:var(--purple);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:6px;}
+.quote-card p{font-size:14px;color:var(--white);line-height:1.6;font-style:italic;}
+.section-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:12px;}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.quick-btn{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:border-color .2s;}
+.quick-btn:hover{border-color:var(--green);}
+.quick-btn .q-icon{font-size:24px;display:block;margin-bottom:6px;}
+.workout-plans{display:grid;gap:12px;margin-bottom:16px;}
+.plan-card{background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.plan-card .p-info h4{font-size:15px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.plan-card .p-info p{font-size:12px;color:var(--gray);}
+.plan-card .p-badge{background:rgba(0,230,118,0.15);color:var(--green);border:1px solid var(--green);border-radius:50px;padding:4px 12px;font-size:11px;font-weight:600;}
+.btn-green{padding:12px 20px;background:linear-gradient(135deg,var(--green-dark),var(--green));color:#000;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px;}
+.btn-outline-green{padding:11px 20px;background:transparent;color:var(--green);border:2px solid var(--green);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px;}
+.exercise-list{display:grid;gap:10px;}
+.exercise-item{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.exercise-item .e-info h4{font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.exercise-item .e-info p{font-size:12px;color:var(--gray);}
+.e-tag{background:var(--card2);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--gray);}
+.log-form{background:var(--card);border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid var(--border);}
+.log-form h3{font-family:'Rajdhani',sans-serif;font-size:17px;color:var(--white);margin-bottom:14px;font-weight:700;}
+label{font-size:12px;color:var(--gray);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
+input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:10px 12px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;font-size:14px;color:var(--white);outline:none;margin-bottom:12px;}
+input:focus,select:focus,textarea:focus{border-color:var(--green);}
+.input-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.logged-list{display:grid;gap:8px;}
+.logged-item{background:var(--card);border-radius:12px;padding:12px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.logged-item .l-info{font-size:13px;color:var(--white);}
+.logged-item .l-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+.del-btn{background:rgba(255,23,68,0.1);border:1px solid var(--red);color:var(--red);border-radius:8px;padding:5px 10px;font-size:11px;cursor:pointer;}
+.timer-display{background:linear-gradient(135deg,#0d2a0d,#1a3a1a);border:2px solid var(--green);border-radius:20px;padding:30px;text-align:center;margin-bottom:16px;}
+.timer-display .t-time{font-family:'Rajdhani',sans-serif;font-size:64px;font-weight:700;color:var(--green);line-height:1;}
+.timer-display .t-label{font-size:13px;color:var(--gray);margin-top:6px;}
+.timer-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.t-btn{padding:12px;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;}
+.t-btn.start{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#000;}
+.t-btn.pause{background:rgba(255,109,0,0.2);border:1px solid var(--orange);color:var(--orange);}
+.t-btn.reset{background:rgba(255,23,68,0.1);border:1px solid var(--red);color:var(--red);}
+.macro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.macro-card{background:var(--card);border-radius:14px;padding:14px;text-align:center;border:1px solid var(--border);}
+.macro-card .m-val{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;}
+.macro-card .m-label{font-size:11px;color:var(--gray);margin-top:2px;}
+.macro-card.protein .m-val{color:var(--blue);}
+.macro-card.carbs .m-val{color:var(--orange);}
+.macro-card.fats .m-val{color:var(--purple);}
+.calorie-ring{text-align:center;padding:20px;background:var(--card);border-radius:16px;margin-bottom:14px;border:1px solid var(--border);}
+.calorie-ring .c-num{font-family:'Rajdhani',sans-serif;font-size:48px;font-weight:700;color:var(--green);}
+.calorie-ring .c-label{font-size:13px;color:var(--gray);}
+.measurement-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.measurement-card{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border);}
+.measurement-card .m-title{font-size:12px;color:var(--gray);margin-bottom:4px;}
+.measurement-card .m-value{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--white);}
+.measurement-card .m-unit{font-size:11px;color:var(--gray);}
+.bmi-card{background:linear-gradient(135deg,rgba(0,230,118,0.1),rgba(0,178,72,0.1));border:1px solid rgba(0,230,118,0.3);border-radius:16px;padding:20px;margin-bottom:14px;text-align:center;}
+.bmi-card .bmi-val{font-family:'Rajdhani',sans-serif;font-size:48px;font-weight:700;color:var(--green);}
+.bmi-card .bmi-cat{font-size:14px;font-weight:600;margin-top:4px;}
+.bmi-card .bmi-label{font-size:12px;color:var(--gray);margin-top:2px;}
+.badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.badge-item{background:var(--card);border-radius:14px;padding:14px;text-align:center;border:1px solid var(--border);}
+.badge-item .b-icon{font-size:32px;margin-bottom:6px;}
+.badge-item .b-name{font-size:11px;color:var(--white);font-weight:600;}
+.badge-item .b-desc{font-size:10px;color:var(--gray);margin-top:2px;}
+.badge-item.locked{opacity:.4;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;}
+.cal-header-row{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px;}
+.cal-header-row span{text-align:center;font-size:11px;color:var(--gray);font-weight:600;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:12px;color:var(--gray);}
+.cal-day.workout-day{background:rgba(0,230,118,0.2);color:var(--green);font-weight:700;}
+.cal-day.today{border:2px solid var(--green);}
+.pr-list{display:grid;gap:8px;}
+.pr-item{background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.pr-item .pr-name{font-size:14px;font-weight:600;color:var(--white);}
+.pr-item .pr-val{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--green);}
+.water-display{text-align:center;padding:20px;background:linear-gradient(135deg,rgba(41,121,255,0.1),rgba(41,121,255,0.05));border:1px solid rgba(41,121,255,0.3);border-radius:16px;margin-bottom:14px;}
+.water-display .w-amount{font-family:'Rajdhani',sans-serif;font-size:48px;font-weight:700;color:var(--blue);}
+.water-display .w-label{font-size:13px;color:var(--gray);}
+.water-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.water-btn{padding:10px;background:rgba(41,121,255,0.1);border:1px solid rgba(41,121,255,0.3);border-radius:10px;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;}
+.share-section{background:linear-gradient(135deg,rgba(0,230,118,0.05),rgba(255,109,0,0.05));border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:16px;}
+.share-section h4{font-size:13px;color:var(--white);margin-bottom:10px;font-weight:600;}
+.share-btns{display:flex;gap:8px;}
+.share-btn{flex:1;padding:10px 6px;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;color:#fff;}
+.share-btn.wa{background:#25d366;}
+.share-btn.fb{background:#1877f2;}
+.share-btn.xb{background:#000;border:1px solid #333;}
+.empty-state{text-align:center;padding:30px 20px;color:var(--gray);}
+.empty-state .e-icon{font-size:40px;margin-bottom:10px;}
+.toast{position:fixed;top:20px;left:16px;right:16px;background:var(--card);color:var(--white);padding:14px 16px;border-radius:14px;z-index:9999;display:none;font-size:14px;text-align:center;border:1px solid var(--green);box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.voice-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--orange-dark),var(--orange));color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;}
+footer{text-align:center;padding:16px;font-size:12px;color:var(--gray);border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="ios-banner" id="iosBanner">
+  <span>📲 Add My iFitness App to Home Screen</span>
+  <button onclick="document.getElementById('iosBanner').style.display='none'">Add</button>
+  <button class="close-ios" onclick="document.getElementById('iosBanner').style.display='none'">✕</button>
+</div>
+
+<div class="toast" id="toast"></div>
+<button class="fab" id="installBtn">📲 Install App</button>
+
+<!-- AUTH SCREEN -->
+<div id="authScreen" class="auth-screen">
+  <div class="auth-grid"></div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="logo-pulse">
+        <div class="logo-icon-wrap">💪</div>
+      </div>
+      <h2>My i<span>Fitness</span> App</h2>
+      <p>YOUR PERSONAL FITNESS COACH</p>
+    </div>
+
+    <div class="auth-card-wrap" id="authCardWrap">
+      <!-- Sign In -->
+      <div class="auth-form signin" id="signinForm">
+        <h3>Welcome Back 👋</h3>
+        <p class="auth-subtitle">Sign in to continue your fitness journey</p>
+        <div class="auth-error" id="signinError"></div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">📧</span>
+            <input type="text" id="signinEmail" placeholder="Enter your email"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="signinPassword" placeholder="Enter your password"/>
+          </div>
+        </div>
+        <button class="btn-auth" onclick="signIn()">SIGN IN →</button>
+        <div class="auth-switch">Don't have an account? <span onclick="showSignUp()">Sign Up</span></div>
+      </div>
+
+      <!-- Sign Up -->
+      <div class="auth-form signup" id="signupForm">
+        <h3>Create Account 🚀</h3>
+        <p class="auth-subtitle">Join thousands achieving their fitness goals</p>
+        <div class="auth-error" id="signupError"></div>
+        <div class="form-group">
+          <label>Full Name</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="signupName" placeholder="Enter your full name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">📧</span>
+            <input type="text" id="signupEmail" placeholder="Enter your email"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="signupPassword" placeholder="Create a password (min 6 chars)"/>
+          </div>
+        </div>
+        <button class="btn-auth" onclick="signUp()">CREATE ACCOUNT →</button>
+        <div class="auth-switch">Already have an account? <span onclick="showSignIn()">Sign In</span></div>
+      </div>
+    </div>
+
+    <!-- Dots indicator -->
+    <div class="auth-dots">
+      <div class="auth-dot active" id="dot0"></div>
+      <div class="auth-dot" id="dot1"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" class="main-app">
+  <header>
+    <div>
+      <div class="brand">TeaJay Konsult Ltd.</div>
+      <h1>💪 My iFitness App</h1>
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <button class="logout-btn" onclick="logOut()">Logout</button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <div class="tab active" id="tab-home">
+    <div class="welcome-card">
+      <div class="greeting">Good day,</div>
+      <h2 id="dashName">Athlete 💪</h2>
+      <div class="streak" id="streakBadge">🔥 0 Day Streak</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="s-icon">👟</div>
+        <div class="s-val" id="dashSteps">0</div>
+        <div class="s-label">Steps Today</div>
+        <div class="s-progress"><div class="s-fill" id="stepsFill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="s-icon">💧</div>
+        <div class="s-val" id="dashWater">0ml</div>
+        <div class="s-label">Water Intake</div>
+        <div class="s-progress"><div class="s-fill" id="waterFill" style="width:0%;background:linear-gradient(90deg,#1565c0,#2979ff)"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="s-icon">🔥</div>
+        <div class="s-val" id="dashCalories">0</div>
+        <div class="s-label">Calories Today</div>
+        <div class="s-progress"><div class="s-fill" id="calFill" style="width:0%;background:linear-gradient(90deg,var(--orange-dark),var(--orange))"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="s-icon">🏋️</div>
+        <div class="s-val" id="dashWorkouts">0</div>
+        <div class="s-label">Workouts Done</div>
+        <div class="s-progress"><div class="s-fill" id="workoutFill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="quote-card">
+      <div class="q-label">💬 Daily Motivation</div>
+      <p id="dailyQuote">Loading motivation...</p>
+    </div>
+    <div class="section-title">Quick Actions</div>
+    <div class="quick-actions">
+      <button class="quick-btn" onclick="switchTab('workout',document.querySelectorAll('nav button')[1])"><span class="q-icon">🏋️</span>Log Workout</button>
+      <button class="quick-btn" onclick="switchTab('nutrition',document.querySelectorAll('nav button')[2])"><span class="q-icon">🥗</span>Log Meal</button>
+      <button class="quick-btn" onclick="switchTab('progress',document.querySelectorAll('nav button')[3])"><span class="q-icon">📊</span>View Progress</button>
+      <button class="quick-btn" onclick="switchTab('timer',document.querySelectorAll('nav button')[4])"><span class="q-icon">⏱️</span>Start Timer</button>
+    </div>
+    <div class="share-section">
+      <h4>Share My iFitness App 💪</h4>
+      <div class="share-btns">
+        <button class="share-btn wa" onclick="shareApp('whatsapp')">WhatsApp</button>
+        <button class="share-btn fb" onclick="shareApp('facebook')">Facebook</button>
+        <button class="share-btn xb" onclick="shareApp('x')">X</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKOUT TAB -->
+  <div class="tab" id="tab-workout">
+    <div class="section-title">Workout Plans</div>
+    <div class="workout-plans">
+      <div class="plan-card">
+        <div class="p-info"><h4>Beginner Full Body</h4><p>3 days/week • 45 mins</p></div>
+        <div class="p-badge">Beginner</div>
+      </div>
+      <div class="plan-card">
+        <div class="p-info"><h4>Intermediate Push Pull</h4><p>4 days/week • 60 mins</p></div>
+        <div class="p-badge" style="color:var(--orange);border-color:var(--orange);background:rgba(255,109,0,0.1)">Intermediate</div>
+      </div>
+      <div class="plan-card">
+        <div class="p-info"><h4>Advanced Strength</h4><p>5 days/week • 75 mins</p></div>
+        <div class="p-badge" style="color:var(--red);border-color:var(--red);background:rgba(255,23,68,0.1)">Advanced</div>
+      </div>
+    </div>
+    <div class="log-form">
+      <h3>Log Workout</h3>
+      <label>Exercise Name</label>
+      <input type="text" id="exName" placeholder="e.g. Bench Press"/>
+      <label>Sets / Reps / Weight (kg)</label>
+      <div class="input-row">
+        <input type="number" id="exSets" placeholder="Sets"/>
+        <input type="number" id="exReps" placeholder="Reps"/>
+        <input type="number" id="exWeight" placeholder="kg"/>
+      </div>
+      <label>Notes (optional)</label>
+      <textarea id="exNotes" rows="2" placeholder="Any notes..."></textarea>
+      <button class="btn-green" onclick="logWorkout()">+ Log Exercise</button>
+      <button class="voice-btn" onclick="startVoiceGuide()">🎙️ Start Voice Guide</button>
+    </div>
+    <div class="section-title">Today's Log</div>
+    <div id="workoutLog" class="logged-list">
+      <div class="empty-state"><div class="e-icon">🏋️</div><p>No exercises logged today</p></div>
+    </div>
+    <div class="section-title" style="margin-top:16px;">Exercise Library</div>
+    <div class="exercise-list" id="exerciseLibrary"></div>
+  </div>
+
+  <!-- NUTRITION TAB -->
+  <div class="tab" id="tab-nutrition">
+    <div class="calorie-ring">
+      <div class="c-num" id="totalCalories">0</div>
+      <div class="c-label">Calories Today / <span id="calGoal">2000</span> goal</div>
+    </div>
+    <div class="macro-grid">
+      <div class="macro-card protein"><div class="m-val" id="totalProtein">0g</div><div class="m-label">Protein</div></div>
+      <div class="macro-card carbs"><div class="m-val" id="totalCarbs">0g</div><div class="m-label">Carbs</div></div>
+      <div class="macro-card fats"><div class="m-val" id="totalFats">0g</div><div class="m-label">Fats</div></div>
+    </div>
+    <div class="log-form">
+      <h3>Log Meal</h3>
+      <label>Food Item</label>
+      <input type="text" id="foodName" placeholder="e.g. Rice and Beans"/>
+      <label>Calories</label>
+      <input type="number" id="foodCal" placeholder="e.g. 350"/>
+      <div class="input-row">
+        <div><label>Protein (g)</label><input type="number" id="foodProtein" placeholder="0"/></div>
+        <div><label>Carbs (g)</label><input type="number" id="foodCarbs" placeholder="0"/></div>
+        <div><label>Fats (g)</label><input type="number" id="foodFats" placeholder="0"/></div>
+      </div>
+      <button class="btn-green" onclick="logMeal()">+ Log Meal</button>
+    </div>
+    <div class="section-title">Today's Meals</div>
+    <div id="mealLog" class="logged-list">
+      <div class="empty-state"><div class="e-icon">🥗</div><p>No meals logged today</p></div>
+    </div>
+    <div class="log-form" style="margin-top:16px;">
+      <h3>💧 Water Intake</h3>
+      <div class="water-display">
+        <div class="w-amount" id="waterAmount">0 ml</div>
+        <div class="w-label">Daily Goal: 2000ml</div>
+      </div>
+      <div class="water-btns">
+        <button class="water-btn" onclick="addWater(200)">+200ml</button>
+        <button class="water-btn" onclick="addWater(350)">+350ml</button>
+        <button class="water-btn" onclick="addWater(500)">+500ml</button>
+      </div>
+      <button class="btn-outline-green" onclick="resetWater()">Reset Water</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS TAB -->
+  <div class="tab" id="tab-progress">
+    <div class="bmi-card">
+      <div class="bmi-val" id="bmiVal">--</div>
+      <div class="bmi-cat" id="bmiCat">Calculate your BMI</div>
+      <div class="bmi-label">Body Mass Index</div>
+    </div>
+    <div class="log-form">
+      <h3>BMI Calculator</h3>
+      <div class="input-row">
+        <div><label>Height (cm)</label><input type="number" id="bmiHeight" placeholder="170"/></div>
+        <div><label>Weight (kg)</label><input type="number" id="bmiWeight" placeholder="70"/></div>
+        <div><label>Age</label><input type="number" id="bmiAge" placeholder="25"/></div>
+      </div>
+      <button class="btn-green" onclick="calculateBMI()">Calculate BMI</button>
+    </div>
+    <div class="section-title">Body Measurements</div>
+    <div class="log-form">
+      <h3>Log Measurements</h3>
+      <div class="input-row">
+        <div><label>Chest (cm)</label><input type="number" id="mChest" placeholder="0"/></div>
+        <div><label>Waist (cm)</label><input type="number" id="mWaist" placeholder="0"/></div>
+        <div><label>Hips (cm)</label><input type="number" id="mHips" placeholder="0"/></div>
+      </div>
+      <div class="input-row">
+        <div><label>Arms (cm)</label><input type="number" id="mArms" placeholder="0"/></div>
+        <div><label>Legs (cm)</label><input type="number" id="mLegs" placeholder="0"/></div>
+        <div><label>Weight (kg)</label><input type="number" id="mWeight" placeholder="0"/></div>
+      </div>
+      <button class="btn-green" onclick="saveMeasurements()">Save Measurements</button>
+    </div>
+    <div class="section-title">Latest Measurements</div>
+    <div class="measurement-grid" id="measurementDisplay"></div>
+    <div class="section-title">Personal Records 🏆</div>
+    <div class="pr-list" id="prList">
+      <div class="empty-state"><div class="e-icon">🏆</div><p>No records yet. Start logging workouts!</p></div>
+    </div>
+    <div class="section-title" style="margin-top:16px;">Achievements 🥇</div>
+    <div class="badges-grid" id="badgesGrid"></div>
+    <div class="section-title" style="margin-top:16px;">Workout Calendar</div>
+    <div class="log-form">
+      <div class="cal-header-row">
+        <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+      </div>
+      <div class="cal-grid" id="workoutCalendar"></div>
+    </div>
+  </div>
+
+  <!-- TIMER TAB -->
+  <div class="tab" id="tab-timer">
+    <div class="timer-display">
+      <div class="t-time" id="timerDisplay">00:00</div>
+      <div class="t-label" id="timerLabel">Workout Timer</div>
+    </div>
+    <div class="timer-btns">
+      <button class="t-btn start" onclick="startTimer()">▶ Start</button>
+      <button class="t-btn pause" onclick="pauseTimer()">⏸ Pause</button>
+      <button class="t-btn reset" onclick="resetTimer()">↺ Reset</button>
+    </div>
+    <div class="log-form">
+      <h3>⏱️ Rest Timer</h3>
+      <label>Rest Duration</label>
+      <select id="restDuration">
+        <option value="30">30 seconds</option>
+        <option value="45">45 seconds</option>
+        <option value="60" selected>60 seconds</option>
+        <option value="90">90 seconds</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+      </select>
+      <button class="btn-green" onclick="startRest()">Start Rest Timer</button>
+    </div>
+    <div class="log-form">
+      <h3>📊 Step Counter</h3>
+      <div class="water-display" style="background:linear-gradient(135deg,rgba(0,230,118,0.1),rgba(0,178,72,0.05));border-color:rgba(0,230,118,0.3);">
+        <div class="w-amount" style="color:var(--green)" id="stepCount">0</div>
+        <div class="w-label">Steps Today / <span id="stepGoal">10,000</span> goal</div>
+      </div>
+      <button class="btn-green" onclick="startStepCounter()">📱 Start Step Counter</button>
+      <button class="btn-outline-green" onclick="resetSteps()">Reset Steps</button>
+    </div>
+  </div>
+
+  <nav>
+    <button class="active" onclick="switchTab('home',this)"><span class="icon">🏠</span>Home</button>
+    <button onclick="switchTab('workout',this)"><span class="icon">🏋️</span>Workout</button>
+    <button onclick="switchTab('nutrition',this)"><span class="icon">🥗</span>Nutrition</button>
+    <button onclick="switchTab('progress',this)"><span class="icon">📊</span>Progress</button>
+    <button onclick="switchTab('timer',this)"><span class="icon">⏱️</span>Timer</button>
+  </nav>
+
+  <footer>© 2026 TeaJay Konsult Ltd. All rights reserved.</footer>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBtC2xvjKHqSLrcD2yuQnmbGAmIaD21_CE",
+  authDomain: "my-ifitness-app.firebaseapp.com",
+  projectId: "my-ifitness-app",
+  storageBucket: "my-ifitness-app.firebasestorage.app",
+  messagingSenderId: "398002967316",
+  appId: "1:398002967316:web:f17f31dc3043ccb7cf2801",
+  measurementId: "G-T2B9W6J2YM"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const APP_URL = 'https://my-ifitness-app.vercel.app';
+
+const QUOTES = [
+  "The only bad workout is the one that didn't happen.",
+  "Push yourself because no one else is going to do it for you.",
+  "Your body can stand almost anything. It's your mind you have to convince.",
+  "Success starts with self-discipline.",
+  "Don't stop when you're tired. Stop when you're done.",
+  "The pain you feel today will be the strength you feel tomorrow.",
+  "Fitness is not about being better than someone else. It's about being better than you used to be.",
+  "Take care of your body. It's the only place you have to live.",
+  "Champions aren't made in gyms. Champions are made from something deep inside them.",
+  "If it doesn't challenge you, it doesn't change you.",
+  "You don't have to be extreme, just consistent.",
+  "One workout at a time. One day at a time. One meal at a time.",
+  "Your health is an investment, not an expense.",
+  "Strive for progress, not perfection.",
+  "It always seems impossible until it's done."
+];
+
+const EXERCISES = [
+  {name:"Push Ups",muscle:"Chest, Triceps",type:"Bodyweight"},
+  {name:"Pull Ups",muscle:"Back, Biceps",type:"Bodyweight"},
+  {name:"Squats",muscle:"Legs, Glutes",type:"Bodyweight"},
+  {name:"Lunges",muscle:"Legs, Glutes",type:"Bodyweight"},
+  {name:"Plank",muscle:"Core, Abs",type:"Bodyweight"},
+  {name:"Bench Press",muscle:"Chest, Triceps",type:"Weights"},
+  {name:"Deadlift",muscle:"Back, Legs",type:"Weights"},
+  {name:"Shoulder Press",muscle:"Shoulders",type:"Weights"},
+  {name:"Bicep Curls",muscle:"Biceps",type:"Weights"},
+  {name:"Tricep Dips",muscle:"Triceps",type:"Bodyweight"},
+  {name:"Burpees",muscle:"Full Body",type:"Cardio"},
+  {name:"Mountain Climbers",muscle:"Core, Cardio",type:"Cardio"},
+  {name:"Jump Rope",muscle:"Cardio, Legs",type:"Cardio"},
+  {name:"Sit Ups",muscle:"Abs, Core",type:"Bodyweight"},
+  {name:"Leg Press",muscle:"Legs, Glutes",type:"Weights"},
+];
+
+const BADGES = [
+  {icon:"🔥",name:"First Workout",desc:"Complete first workout",key:"firstWorkout"},
+  {icon:"💧",name:"Hydrated",desc:"Reach 2L water",key:"hydrated"},
+  {icon:"🥗",name:"Nutrition Pro",desc:"Log 5 meals",key:"nutritionPro"},
+  {icon:"📅",name:"3 Day Streak",desc:"3 days in a row",key:"streak3"},
+  {icon:"🏆",name:"7 Day Streak",desc:"7 days in a row",key:"streak7"},
+  {icon:"💪",name:"Power Lifter",desc:"Log 20 workouts",key:"powerLifter"},
+];
+
+let currentUser = null;
+let userData = {};
+let timerInterval = null;
+let timerSeconds = 0;
+let timerRunning = false;
+let restInterval = null;
+let isShowingSignUp = false;
+let isAnimating = false;
+
+onAuthStateChanged(auth, async (user) => {
+  if(user){
+    currentUser = user;
+    await loadUserData();
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+    initDashboard();
+  } else {
+    currentUser = null;
+    document.getElementById('authScreen').style.display = 'flex';
+    document.getElementById('mainApp').style.display = 'none';
+  }
+});
+
+// AUTH ANIMATIONS
+window.showSignUp = function(){
+  if(isAnimating) return;
+  isAnimating = true;
+  const signin = document.getElementById('signinForm');
+  const signup = document.getElementById('signupForm');
+
+  // Update wrap height smoothly
+  signin.classList.add('exit-to-signup');
+  signup.style.pointerEvents = 'auto';
+
+  setTimeout(() => {
+    signup.classList.add('enter-from-right');
+    signup.style.opacity = '1';
+    signup.style.zIndex = '2';
+    signin.style.zIndex = '1';
+  }, 50);
+
+  setTimeout(() => {
+    signin.classList.remove('exit-to-signup');
+    signin.style.opacity = '0';
+    signin.style.transform = 'translateX(-60px) scale(0.92) rotateY(8deg)';
+    signup.classList.remove('enter-from-right');
+    signup.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
+    isShowingSignUp = true;
+    updateDots();
+    isAnimating = false;
+  }, 520);
+};
+
+window.showSignIn = function(){
+  if(isAnimating) return;
+  isAnimating = true;
+  const signin = document.getElementById('signinForm');
+  const signup = document.getElementById('signupForm');
+
+  signup.classList.add('exit-to-signin');
+  signin.style.pointerEvents = 'auto';
+
+  setTimeout(() => {
+    signin.classList.add('enter-from-left');
+    signin.style.opacity = '1';
+    signin.style.zIndex = '2';
+    signup.style.zIndex = '1';
+  }, 50);
+
+  setTimeout(() => {
+    signup.classList.remove('exit-to-signin');
+    signup.style.opacity = '0';
+    signup.style.transform = 'translateX(60px) scale(0.92) rotateY(-8deg)';
+    signin.classList.remove('enter-from-left');
+    signin.style.transform = 'translateX(0) scale(1) rotateY(0deg)';
+    isShowingSignUp = false;
+    updateDots();
+    isAnimating = false;
+  }, 520);
+};
+
+function updateDots(){
+  document.getElementById('dot0').classList.toggle('active', !isShowingSignUp);
+  document.getElementById('dot1').classList.toggle('active', isShowingSignUp);
+}
+
+function setCardWrapHeight(){
+  const wrap = document.getElementById('authCardWrap');
+  const active = isShowingSignUp
+    ? document.getElementById('signupForm')
+    : document.getElementById('signinForm');
+  wrap.style.minHeight = active.offsetHeight + 'px';
+}
+
+window.signUp = async function(){
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  const errEl = document.getElementById('signupError');
+  errEl.style.display = 'none';
+  if(!name || !email || !password){errEl.textContent='Please fill all fields.';errEl.style.display='block';return;}
+  if(password.length < 6){errEl.textContent='Password must be at least 6 characters.';errEl.style.display='block';return;}
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(cred.user, {displayName: name});
+    await setDoc(doc(db,'users',cred.user.uid,'profile','data'),{
+      name, email, createdAt: serverTimestamp(),
+      streak:0, lastWorkoutDate:'', totalWorkouts:0,
+      measurements:{}, badges:{}, personalRecords:{}
+    });
+    showToast('✅ Account created! Welcome to iFitness! 💪');
+  } catch(e){
+    let msg = e.message;
+    if(msg.includes('email-already-in-use')) msg = 'This email is already registered.';
+    else if(msg.includes('invalid-email')) msg = 'Please enter a valid email address.';
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+};
+
+window.signIn = async function(){
+  const email = document.getElementById('signinEmail').value.trim();
+  const password = document.getElementById('signinPassword').value;
+  const errEl = document.getElementById('signinError');
+  errEl.style.display = 'none';
+  if(!email || !password){errEl.textContent='Please fill all fields.';errEl.style.display='block';return;}
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    showToast('✅ Welcome back! Let\'s crush it today! 💪');
+  } catch(e){
+    errEl.textContent = 'Invalid email or password. Please try again.';
+    errEl.style.display = 'block';
+  }
+};
+
+window.logOut = async function(){
+  if(!confirm('Are you sure you want to logout?')) return;
+  await signOut(auth);
+};
+
+async function loadUserData(){
+  try {
+    const snap = await getDoc(doc(db,'users',currentUser.uid,'profile','data'));
+    if(snap.exists()) userData = snap.data();
+    else userData = {name: currentUser.displayName || 'Athlete', streak:0, totalWorkouts:0};
+  } catch(e){ userData = {name: currentUser.displayName || 'Athlete', streak:0, totalWorkouts:0}; }
+}
+
+async function saveUserData(){
+  try { await updateDoc(doc(db,'users',currentUser.uid,'profile','data'), userData); } catch(e){}
+}
+
+function initDashboard(){
+  const name = userData.name || currentUser.displayName || 'Athlete';
+  document.getElementById('dashName').textContent = name.split(' ')[0] + ' 💪';
+  document.getElementById('streakBadge').textContent = `🔥 ${userData.streak || 0} Day Streak`;
+  document.getElementById('dailyQuote').textContent = QUOTES[new Date().getDate() % QUOTES.length];
+  const today = getTodayKey();
+  const todayData = getLocalDay(today);
+  document.getElementById('dashSteps').textContent = todayData.steps || 0;
+  document.getElementById('stepsFill').style.width = Math.min(((todayData.steps||0)/10000)*100,100) + '%';
+  document.getElementById('dashWater').textContent = (todayData.water||0) + 'ml';
+  document.getElementById('waterFill').style.width = Math.min(((todayData.water||0)/2000)*100,100) + '%';
+  document.getElementById('dashCalories').textContent = todayData.calories || 0;
+  document.getElementById('calFill').style.width = Math.min(((todayData.calories||0)/2000)*100,100) + '%';
+  document.getElementById('dashWorkouts').textContent = userData.totalWorkouts || 0;
+  document.getElementById('workoutFill').style.width = Math.min(((userData.totalWorkouts||0)/30)*100,100) + '%';
+  renderExerciseLibrary();
+  renderWorkoutLog();
+  renderMealLog();
+  renderMeasurements();
+  renderBadges();
+  renderCalendar();
+  renderPRs();
+  updateWaterDisplay();
+  updateNutritionDisplay();
+  document.getElementById('stepCount').textContent = todayData.steps || 0;
+}
+
+function getTodayKey(){ return new Date().toISOString().split('T')[0]; }
+function getLocalDay(key){ return JSON.parse(localStorage.getItem('ifit_day_'+key) || '{}'); }
+function saveLocalDay(key, data){ localStorage.setItem('ifit_day_'+key, JSON.stringify(data)); }
+
+window.logWorkout = async function(){
+  const name = document.getElementById('exName').value.trim();
+  const sets = document.getElementById('exSets').value;
+  const reps = document.getElementById('exReps').value;
+  const weight = document.getElementById('exWeight').value;
+  const notes = document.getElementById('exNotes').value;
+  if(!name){showToast('Please enter exercise name.');return;}
+  const entry = {name, sets:sets||0, reps:reps||0, weight:weight||0, notes, time:new Date().toISOString()};
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  if(!dayData.workouts) dayData.workouts = [];
+  dayData.workouts.push(entry);
+  saveLocalDay(today, dayData);
+  userData.totalWorkouts = (userData.totalWorkouts||0) + 1;
+  const todayStr = today;
+  if(userData.lastWorkoutDate === getPrevDay(todayStr)) userData.streak = (userData.streak||0) + 1;
+  else if(userData.lastWorkoutDate !== todayStr) userData.streak = 1;
+  userData.lastWorkoutDate = todayStr;
+  await saveUserData();
+  document.getElementById('exName').value='';
+  document.getElementById('exSets').value='';
+  document.getElementById('exReps').value='';
+  document.getElementById('exWeight').value='';
+  document.getElementById('exNotes').value='';
+  renderWorkoutLog();
+  initDashboard();
+  showToast('💪 Exercise logged!');
+  checkBadges();
+};
+
+function getPrevDay(dateStr){
+  const d = new Date(dateStr);
+  d.setDate(d.getDate()-1);
+  return d.toISOString().split('T')[0];
+}
+
+function renderWorkoutLog(){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  const list = document.getElementById('workoutLog');
+  if(!dayData.workouts||dayData.workouts.length===0){
+    list.innerHTML='<div class="empty-state"><div class="e-icon">🏋️</div><p>No exercises logged today</p></div>';return;
+  }
+  list.innerHTML = dayData.workouts.map((w,i)=>`
+    <div class="logged-item">
+      <div><div class="l-info">${w.name}</div><div class="l-meta">${w.sets} sets × ${w.reps} reps ${w.weight>0?'@ '+w.weight+'kg':''}</div></div>
+      <button class="del-btn" onclick="deleteWorkout(${i})">Delete</button>
+    </div>`).join('');
+}
+
+window.deleteWorkout = function(i){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  dayData.workouts.splice(i,1);
+  saveLocalDay(today, dayData);
+  renderWorkoutLog();
+};
+
+function renderExerciseLibrary(){
+  document.getElementById('exerciseLibrary').innerHTML = EXERCISES.map(e=>`
+    <div class="exercise-item">
+      <div class="e-info"><h4>${e.name}</h4><p>${e.muscle}</p></div>
+      <span class="e-tag">${e.type}</span>
+    </div>`).join('');
+}
+
+window.logMeal = function(){
+  const name = document.getElementById('foodName').value.trim();
+  const cal = parseInt(document.getElementById('foodCal').value)||0;
+  const protein = parseInt(document.getElementById('foodProtein').value)||0;
+  const carbs = parseInt(document.getElementById('foodCarbs').value)||0;
+  const fats = parseInt(document.getElementById('foodFats').value)||0;
+  if(!name){showToast('Please enter food name.');return;}
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  if(!dayData.meals) dayData.meals = [];
+  dayData.meals.push({name,cal,protein,carbs,fats,time:new Date().toISOString()});
+  saveLocalDay(today,dayData);
+  document.getElementById('foodName').value='';
+  document.getElementById('foodCal').value='';
+  document.getElementById('foodProtein').value='';
+  document.getElementById('foodCarbs').value='';
+  document.getElementById('foodFats').value='';
+  renderMealLog();
+  updateNutritionDisplay();
+  initDashboard();
+  showToast('🥗 Meal logged!');
+  checkBadges();
+};
+
+function renderMealLog(){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  const list = document.getElementById('mealLog');
+  if(!dayData.meals||dayData.meals.length===0){
+    list.innerHTML='<div class="empty-state"><div class="e-icon">🥗</div><p>No meals logged today</p></div>';return;
+  }
+  list.innerHTML = dayData.meals.map((m,i)=>`
+    <div class="logged-item">
+      <div><div class="l-info">${m.name}</div><div class="l-meta">${m.cal} kcal • P:${m.protein}g C:${m.carbs}g F:${m.fats}g</div></div>
+      <button class="del-btn" onclick="deleteMeal(${i})">Delete</button>
+    </div>`).join('');
+}
+
+window.deleteMeal = function(i){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  dayData.meals.splice(i,1);
+  saveLocalDay(today,dayData);
+  renderMealLog();
+  updateNutritionDisplay();
+};
+
+function updateNutritionDisplay(){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  const meals = dayData.meals||[];
+  document.getElementById('totalCalories').textContent = meals.reduce((s,m)=>s+m.cal,0);
+  document.getElementById('totalProtein').textContent = meals.reduce((s,m)=>s+m.protein,0)+'g';
+  document.getElementById('totalCarbs').textContent = meals.reduce((s,m)=>s+m.carbs,0)+'g';
+  document.getElementById('totalFats').textContent = meals.reduce((s,m)=>s+m.fats,0)+'g';
+}
+
+window.addWater = function(ml){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  dayData.water = (dayData.water||0)+ml;
+  saveLocalDay(today,dayData);
+  updateWaterDisplay();
+  initDashboard();
+  if(dayData.water>=2000){showToast('💧 Hydration goal reached!');checkBadges();}
+  else showToast(`💧 +${ml}ml added!`);
+};
+
+window.resetWater = function(){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  dayData.water=0;
+  saveLocalDay(today,dayData);
+  updateWaterDisplay();
+  initDashboard();
+};
+
+function updateWaterDisplay(){
+  const today = getTodayKey();
+  const dayData = getLocalDay(today);
+  document.getElementById('waterAmount').textContent=(dayData.water||0)+' ml';
+}
+
+window.calculateBMI = function(){
+  const h = parseFloat(document.getElementById('bmiHeight').value);
+  const w = parseFloat(document.getElementById('bmiWeight').value);
+  if(!h||!w){showToast('Please enter height and weight.');return;}
+  const bmi = (w/((h/100)*(h/100))).toFixed(1);
+  let cat,color;
+  if(bmi<18.5){cat='Underweight';color='#2979ff';}
+  else if(bmi<25){cat='Normal Weight';color='var(--green)';}
+  else if(bmi<30){cat='Overweight';color='var(--orange)';}
+  else{cat='Obese';color='var(--red)';}
+  document.getElementById('bmiVal').textContent=bmi;
+  document.getElementById('bmiVal').style.color=color;
+  document.getElementById('bmiCat').textContent=cat;
+  document.getElementById('bmiCat').style.color=color;
+  showToast(`📊 BMI: ${bmi} — ${cat}`);
+};
+
+window.saveMeasurements = async function(){
+  const m={
+    chest:document.getElementById('mChest').value||0,
+    waist:document.getElementById('mWaist').value||0,
+    hips:document.getElementById('mHips').value||0,
+    arms:document.getElementById('mArms').value||0,
+    legs:document.getElementById('mLegs').value||0,
+    weight:document.getElementById('mWeight').value||0,
+    date:getTodayKey()
+  };
+  userData.measurements=m;
+  await saveUserData();
+  renderMeasurements();
+  showToast('📏 Measurements saved!');
+};
+
+function renderMeasurements(){
+  const m=userData.measurements||{};
+  if(!m.chest){document.getElementById('measurementDisplay').innerHTML='<p style="color:var(--gray);font-size:13px;">No measurements saved yet.</p>';return;}
+  const fields=[{k:'chest',l:'Chest'},{k:'waist',l:'Waist'},{k:'hips',l:'Hips'},{k:'arms',l:'Arms'},{k:'legs',l:'Legs'},{k:'weight',l:'Weight'}];
+  document.getElementById('measurementDisplay').innerHTML=fields.map(f=>`
+    <div class="measurement-card">
+      <div class="m-title">${f.l}</div>
+      <div class="m-value">${m[f.k]||'--'}<span class="m-unit">${f.k==='weight'?' kg':' cm'}</span></div>
+    </div>`).join('');
+}
+
+function renderPRs(){
+  const prs=userData.personalRecords||{};
+  const list=document.getElementById('prList');
+  if(Object.keys(prs).length===0){
+    list.innerHTML='<div class="empty-state"><div class="e-icon">🏆</div><p>No records yet.</p></div>';return;
+  }
+  list.innerHTML=Object.entries(prs).map(([k,v])=>`
+    <div class="pr-item"><div class="pr-name">${k}</div><div class="pr-val">${v}kg</div></div>`).join('');
+}
+
+function checkBadges(){
+  if(!userData.badges) userData.badges={};
+  const today=getTodayKey();
+  const dayData=getLocalDay(today);
+  if((dayData.workouts||[]).length>0) userData.badges.firstWorkout=true;
+  if((dayData.water||0)>=2000) userData.badges.hydrated=true;
+  const allMeals=Object.keys(localStorage).filter(k=>k.startsWith('ifit_day_')).reduce((s,k)=>s+(JSON.parse(localStorage.getItem(k)).meals||[]).length,0);
+  if(allMeals>=5) userData.badges.nutritionPro=true;
+  if((userData.streak||0)>=3) userData.badges.streak3=true;
+  if((userData.streak||0)>=7) userData.badges.streak7=true;
+  if((userData.totalWorkouts||0)>=20) userData.badges.powerLifter=true;
+  saveUserData();
+  renderBadges();
+}
+
+function renderBadges(){
+  document.getElementById('badgesGrid').innerHTML=BADGES.map(b=>`
+    <div class="badge-item ${userData.badges&&userData.badges[b.key]?'':'locked'}">
+      <div class="b-icon">${b.icon}</div>
+      <div class="b-name">${b.name}</div>
+      <div class="b-desc">${b.desc}</div>
+    </div>`).join('');
+}
+
+function renderCalendar(){
+  const now=new Date();
+  const year=now.getFullYear();
+  const month=now.getMonth();
+  const firstDay=new Date(year,month,1).getDay();
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  const today=now.getDate();
+  let html='';
+  for(let i=0;i<firstDay;i++) html+='<div class="cal-day"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayData=getLocalDay(dateStr);
+    let cls='cal-day';
+    if(d===today) cls+=' today';
+    if((dayData.workouts||[]).length>0) cls+=' workout-day';
+    html+=`<div class="${cls}">${d}</div>`;
+  }
+  document.getElementById('workoutCalendar').innerHTML=html;
+}
+
+window.startTimer = function(){
+  if(timerRunning) return;
+  timerRunning=true;
+  timerInterval=setInterval(()=>{timerSeconds++;updateTimerDisplay();},1000);
+};
+window.pauseTimer = function(){timerRunning=false;clearInterval(timerInterval);};
+window.resetTimer = function(){timerRunning=false;clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();};
+function updateTimerDisplay(){
+  const mins=Math.floor(timerSeconds/60).toString().padStart(2,'0');
+  const secs=(timerSeconds%60).toString().padStart(2,'0');
+  document.getElementById('timerDisplay').textContent=`${mins}:${secs}`;
+}
+
+window.startRest = function(){
+  const secs=parseInt(document.getElementById('restDuration').value);
+  let remaining=secs;
+  clearInterval(restInterval);
+  document.getElementById('timerLabel').textContent='Rest Timer';
+  document.getElementById('timerDisplay').textContent=`00:${String(secs).padStart(2,'0')}`;
+  restInterval=setInterval(()=>{
+    remaining--;
+    const m=Math.floor(remaining/60).toString().padStart(2,'0');
+    const s=(remaining%60).toString().padStart(2,'0');
+    document.getElementById('timerDisplay').textContent=`${m}:${s}`;
+    if(remaining<=0){
+      clearInterval(restInterval);
+      document.getElementById('timerLabel').textContent='Rest Complete!';
+      showToast('⏱️ Rest over! Back to work! 💪');
+    }
+  },1000);
+};
+
+window.startStepCounter = function(){
+  if('DeviceMotionEvent' in window){
+    let lastAcc=0;
+    window.addEventListener('devicemotion',(e)=>{
+      const acc=Math.abs(e.accelerationIncludingGravity.x)+Math.abs(e.accelerationIncludingGravity.y)+Math.abs(e.accelerationIncludingGravity.z);
+      if(acc-lastAcc>12){
+        const today=getTodayKey();
+        const dayData=getLocalDay(today);
+        dayData.steps=(dayData.steps||0)+1;
+        saveLocalDay(today,dayData);
+        document.getElementById('stepCount').textContent=dayData.steps;
+        initDashboard();
+      }
+      lastAcc=acc;
+    });
+    showToast('👟 Step counter started!');
+  } else {showToast('Step counter not supported on this device.');}
+};
+
+window.resetSteps = function(){
+  const today=getTodayKey();
+  const dayData=getLocalDay(today);
+  dayData.steps=0;
+  saveLocalDay(today,dayData);
+  document.getElementById('stepCount').textContent=0;
+  initDashboard();
+};
+
+window.startVoiceGuide = function(){
+  if(!('speechSynthesis' in window)){showToast('Voice guide not supported.');return;}
+  const workouts=['Get ready! Starting your workout now.','Begin with 10 push ups. Keep your back straight.','Rest for 30 seconds.','Now do 15 squats. Go all the way down.','Rest for 30 seconds.','Time for 10 pull ups or modified rows.','Rest for 30 seconds.','Final set — 20 mountain climbers. Keep your core tight.','Great work! Workout complete. Remember to stretch!'];
+  let i=0;
+  const speak=()=>{
+    if(i>=workouts.length) return;
+    const utter=new SpeechSynthesisUtterance(workouts[i]);
+    utter.rate=0.9;
+    utter.onend=()=>{i++;if(i<workouts.length) setTimeout(speak,31000);};
+    window.speechSynthesis.speak(utter);
+    i++;
+  };
+  speak();
+  showToast('🎙️ Voice guide started!');
+};
+
+window.toggleTheme = function(){
+  document.body.classList.toggle('light');
+  const isLight=document.body.classList.contains('light');
+  document.getElementById('themeBtn').textContent=isLight?'🌙':'☀️';
+  localStorage.setItem('ifit_theme',isLight?'light':'dark');
+};
+if(localStorage.getItem('ifit_theme')==='light'){
+  document.body.classList.add('light');
+  document.getElementById('themeBtn').textContent='🌙';
+}
+
+window.switchTab = function(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo(0,0);
+};
+
+window.shareApp = function(platform){
+  const msg=encodeURIComponent(`💪 I'm using My iFitness App to track my workouts, calories and progress! It's free and works offline. Try it: ${APP_URL}`);
+  const urls={
+    whatsapp:`https://wa.me/?text=${msg}`,
+    facebook:`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(APP_URL)}`,
+    x:`https://x.com/intent/tweet?text=${msg}`
+  };
+  window.open(urls[platform],'_blank');
+};
+
+window.showToast = function(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3500);
+};
+
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(()=>{});}
+
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  const fab=document.getElementById('installBtn');
+  fab.style.display='flex';
+  fab.onclick=async()=>{
+    e.prompt();
+    const {outcome}=await e.userChoice;
+    if(outcome==='accepted') fab.style.display='none';
+  };
+});
+
+const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches;
+if(isIOS&&!isStandalone) document.getElementById('iosBanner').style.display='flex';
+
+if('Notification' in window&&Notification.permission!=='granted') Notification.requestPermission();
+</script>
+</body>
+</html>
